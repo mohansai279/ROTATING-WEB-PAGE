@@ -35,6 +35,7 @@ This HTML document creates a webpage with a fixed header, a main content area, a
 - **Toggle Menu**: The JavaScript code listens for clicks on the toggle button. When clicked, it toggles the menu's visibility and applies a rotation and translation to the main content.
   - If the menu is active, it slides in from the left, and the main content tilts and shifts to the right.
   - If the menu is inactive, it slides back out, and the main content returns to its normal position.
+![ROTATING PAGE](https://github.com/user-attachments/assets/31546280-ff5d-4e1f-976b-6e56baffb786)
 
 ## Sample Content
 - The main content includes a section about Bhagat Singh, with headings, paragraphs, and images.
