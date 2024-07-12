@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Layout Header</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+            background-color: antiquewhite;
+        }
+
+        .header {
+            width: 100%;
+            background-color: darkorange;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header button {
+            background-color: white;
+            border: none;
+            padding: 10px 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .main-content-container {
+            display: flex;
+            width: 100%;
+            padding-top: 60px; /* To avoid overlap with the fixed header */
+            transition: transform 0.5s ease, margin-left 0.5s ease;
+
+        }
+
+        .main-content {
+            flex-grow: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            overflow-y: auto;
+            padding: 20px;
+            position: relative;
+            transition: transform 0.5s ease, margin-left 0.5s ease;
+            transform-origin: bottom left;
+        }
+
+        .menu {
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top:70%;
+            bottom: 0;
+            left: -200px; /* Hide the menu by default */
+            width:fit-content;
+            height: 100%;
+            z-index: 999;
+            transition: left 0.5s ease;
+            border-top-right-radius: 200px;
+            border-bottom-right-radius:200px ;
+           
+        }
+
+        .menu.active {
+            left: 0;
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+
+        .main-content h1, .main-content p {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .main-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            margin-left: 40%;
+        }
+
+        .header-menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+        .menu.active::before {
+            left: 0;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-menu-icon" id="toggleButton">&#9776;</div>
+    </div>
+    <div class="main-content-container">
+        <div class="main-content" id="mainContent">
+            <section>
+                <h1>THE FREEDOM FIGHTER</h1>
+                <h1>Welcome to the Art of Bhagat Singh</h1>
+                <p>Bhagat Singh (28 September 1907 – 23 March 1931) was an Indian anti-colonial revolutionary who participated in the mistaken murder of a junior British police officer in...</p>
+                <img src="bhagathsingh.jpg" alt="Bhagat Singh">
+                <p>He later took part in a largely symbolic bombing of the Central Legislative Assembly in Delhi and a hunger strike in jail, which—on the back of sympathetic coverage in Indian-owned newspapers—turned him into a household name in the Punjab region, and after his execution at age 23 into a martyr and folk hero in Northern India.</p>
+                <img src="singh2.jpg" alt="Bhagat Singh">
+            </section>
+        </div>
+        <div class="menu" id="menu">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Website</a>
+        </div>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const mainContent = document.getElementById('mainContent');
+        const menu = document.getElementById('menu');
+
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            
+            if (menu.classList.contains('active')) {
+                // Slide in menu
+                menu.style.left = '0';
+                // Tilt main content
+                mainContent.style.transform = 'rotate(-13deg) translateX(200px)';
+            } else {
+                // Slide out menu
+                menu.style.left = '-200px';
+                // Reset tilt of main content
+                mainContent.style.transform = 'rotate(0deg) translateX(0)';
+            }
+        });
+    </script>
+</body>
+</html>
